@@ -12,7 +12,7 @@ jobs:
         debian: [bullseye, bookworm, trixie]
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Build package
       run: |
@@ -23,7 +23,7 @@ jobs:
         "
     
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: koha-systemd-${{ matrix.debian }}
         path: ../*.deb
@@ -32,7 +32,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
