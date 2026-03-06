@@ -7,16 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        debian: [bullseye, bookworm, trixie]
     
     steps:
     - uses: actions/checkout@v4
     
     - name: Build package
       run: |
-        docker run --rm -v $PWD:/src -w /src debian:${{ matrix.debian }} bash -c "
+        docker run --rm -v $PWD:/src -w /src debian:bookworm bash -c "
           apt-get update && 
           apt-get install -y debhelper build-essential &&
           dpkg-buildpackage -us -uc -b &&
@@ -26,7 +23,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: koha-systemd-${{ matrix.debian }}
+        name: koha-systemd
         path: '*.deb'
   
   release:
