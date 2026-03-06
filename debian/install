@@ -1,0 +1,3 @@
+systemd/*.service usr/lib/systemd/system
+systemd/*.target usr/lib/systemd/system
+scripts/koha-systemd-ctl usr/sbin

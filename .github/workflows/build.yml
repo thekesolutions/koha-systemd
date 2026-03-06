@@ -1,0 +1,40 @@
+name: Build Debian Package
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        debian: [bullseye, bookworm]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build package
+      run: |
+        docker run --rm -v $PWD:/src -w /src debian:${{ matrix.debian }} bash -c "
+          apt-get update && 
+          apt-get install -y debhelper build-essential &&
+          dpkg-buildpackage -us -uc -b
+        "
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: koha-systemd-${{ matrix.debian }}
+        path: ../*.deb
+  
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v3
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: '**/*.deb'

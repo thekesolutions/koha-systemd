@@ -1,0 +1,17 @@
+[Unit]
+Description=Koha Elasticsearch indexer daemon for %i
+PartOf=koha@%i.target
+After=koha@%i.target
+
+[Service]
+Type=simple
+User=%i-koha
+Group=%i-koha
+Environment=KOHA_CONF=/etc/koha/sites/%i/koha-conf.xml
+Environment=PERL5LIB=/usr/share/koha/lib
+ExecStart=/usr/share/koha/bin/workers/es_indexer_daemon.pl
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=koha@%i.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=Koha Zebra indexer daemon for %i
+PartOf=koha@%i.target
+After=koha@%i.target koha-zebra@%i.service
+
+[Service]
+Type=simple
+User=%i-koha
+Group=%i-koha
+Environment=KOHA_CONF=/etc/koha/sites/%i/koha-conf.xml
+Environment=PERL5LIB=/usr/share/koha/lib
+ExecStart=/usr/share/koha/bin/migration_tools/rebuild_zebra.pl -daemon -sleep 5
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=koha@%i.target

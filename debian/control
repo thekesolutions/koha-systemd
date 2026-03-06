@@ -1,0 +1,22 @@
+Source: koha-systemd
+Section: admin
+Priority: optional
+Maintainer: Tomas Cohen Arazi <tomascohen@theke.io>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.5.0
+Homepage: https://github.com/thekesolutions/koha-systemd
+
+Package: koha-systemd
+Architecture: all
+Depends: ${misc:Depends}, systemd, koha-common
+Description: Native systemd service units for Koha ILS
+ Provides native systemd service management for Koha instances.
+ Each service type (Plack, Zebra, SIP, Z3950, workers, indexers)
+ runs as a separate systemd unit with proper isolation, resource
+ limits, and monitoring.
+ .
+ This package addresses issues with the traditional init.d approach:
+ - Proper process isolation per service
+ - Independent resource limits and restart policies
+ - Better observability via journalctl
+ - Native systemd integration (MemoryMax, CPUQuota, etc.)
