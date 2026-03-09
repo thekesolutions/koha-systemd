@@ -86,20 +86,28 @@ sudo systemctl enable koha-indexer@${INSTANCE}.service
 sudo systemctl start koha@${INSTANCE}.target
 ```
 
-### Managing a complete instance
+### Helper Script
+
+For simpler management, use `koha-systemd-ctl`:
 
 ```bash
+# Set your instance name
+INSTANCE=library
+
+# Start/stop/restart all services
+sudo koha-systemd-ctl start ${INSTANCE}
+sudo koha-systemd-ctl stop ${INSTANCE}
+sudo koha-systemd-ctl restart ${INSTANCE}
+
 # Check status
-sudo systemctl status koha@${INSTANCE}.target
+sudo koha-systemd-ctl status ${INSTANCE}
 
-# Stop all services
-sudo systemctl stop koha@${INSTANCE}.target
-
-# Restart all services
-sudo systemctl restart koha@${INSTANCE}.target
+# Manage individual services
+sudo koha-systemd-ctl restart ${INSTANCE} plack
+sudo koha-systemd-ctl status ${INSTANCE} worker
 ```
 
-### Managing individual services
+### Managing individual services with systemctl
 
 ```bash
 # Restart just Plack
@@ -108,6 +116,9 @@ sudo systemctl restart koha-plack@${INSTANCE}.service
 # Check worker status
 sudo systemctl status koha-worker@${INSTANCE}.service
 sudo systemctl status koha-worker-long@${INSTANCE}.service
+
+# Stop a specific service
+sudo systemctl stop koha-sip@${INSTANCE}.service
 ```
 
 ### Viewing logs
@@ -121,19 +132,6 @@ sudo journalctl -u koha-plack@${INSTANCE}.service -f
 
 # All Koha logs
 sudo journalctl -u 'koha-*.service'
-```
-
-### Helper script
-
-```bash
-# Enable instance
-sudo koha-systemd-ctl enable ${INSTANCE}
-
-# Start specific service
-sudo koha-systemd-ctl start ${INSTANCE} plack
-
-# Check status
-sudo koha-systemd-ctl status ${INSTANCE}
 ```
 
 ## Design
