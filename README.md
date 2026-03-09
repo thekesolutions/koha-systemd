@@ -59,38 +59,65 @@ sudo dpkg -i ../koha-systemd_*.deb
 
 ## Usage
 
+### Quick Start - Enable All Services
+
+Set your instance name and copy-paste:
+
+```bash
+# Set your instance name
+INSTANCE=library
+
+# Enable the target
+sudo systemctl enable koha@${INSTANCE}.target
+
+# Enable core services
+sudo systemctl enable koha-plack@${INSTANCE}.service
+sudo systemctl enable koha-zebra@${INSTANCE}.service
+sudo systemctl enable koha-worker@${INSTANCE}.service
+sudo systemctl enable koha-worker-long@${INSTANCE}.service
+sudo systemctl enable koha-indexer@${INSTANCE}.service
+
+# Enable optional services (only if configured)
+# sudo systemctl enable koha-sip@${INSTANCE}.service          # if SIP is configured
+# sudo systemctl enable koha-z3950@${INSTANCE}.service        # if Z3950 is configured
+# sudo systemctl enable koha-es-indexer@${INSTANCE}.service   # if using Elasticsearch
+
+# Start everything
+sudo systemctl start koha@${INSTANCE}.target
+```
+
 ### Managing a complete instance
 
 ```bash
-# Enable and start all services (replace [instance] with your instance name, e.g., library)
-sudo systemctl enable --now koha@[instance].target
-
 # Check status
-sudo systemctl status koha@[instance].target
+sudo systemctl status koha@${INSTANCE}.target
 
 # Stop all services
-sudo systemctl stop koha@[instance].target
+sudo systemctl stop koha@${INSTANCE}.target
+
+# Restart all services
+sudo systemctl restart koha@${INSTANCE}.target
 ```
 
 ### Managing individual services
 
 ```bash
 # Restart just Plack
-sudo systemctl restart koha-plack@[instance].service
+sudo systemctl restart koha-plack@${INSTANCE}.service
 
 # Check worker status
-sudo systemctl status koha-worker@[instance].service
-sudo systemctl status koha-worker-long@[instance].service
+sudo systemctl status koha-worker@${INSTANCE}.service
+sudo systemctl status koha-worker-long@${INSTANCE}.service
 ```
 
 ### Viewing logs
 
 ```bash
 # All services for instance
-sudo journalctl -u 'koha-*@[instance].service'
+sudo journalctl -u "koha-*@${INSTANCE}.service"
 
 # Specific service
-sudo journalctl -u koha-plack@[instance].service -f
+sudo journalctl -u koha-plack@${INSTANCE}.service -f
 
 # All Koha logs
 sudo journalctl -u 'koha-*.service'
@@ -100,13 +127,13 @@ sudo journalctl -u 'koha-*.service'
 
 ```bash
 # Enable instance
-sudo koha-systemd-ctl enable [instance]
+sudo koha-systemd-ctl enable ${INSTANCE}
 
 # Start specific service
-sudo koha-systemd-ctl start [instance] plack
+sudo koha-systemd-ctl start ${INSTANCE} plack
 
 # Check status
-sudo koha-systemd-ctl status [instance]
+sudo koha-systemd-ctl status ${INSTANCE}
 ```
 
 ## Design
