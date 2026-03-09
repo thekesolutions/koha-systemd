@@ -7,7 +7,9 @@ After=koha@%i.target koha-zebra@%i.service
 Type=simple
 User=%i-koha
 Group=%i-koha
+WorkingDirectory=/var/lib/koha/%i
 Environment=KOHA_CONF=/etc/koha/sites/%i/koha-conf.xml
+Environment=KOHA_HOME=/usr/share/koha
 Environment=PERL5LIB=/usr/share/koha/lib
 ExecStart=/usr/share/koha/bin/migration_tools/rebuild_zebra.pl -daemon -sleep 5
 Restart=on-failure
