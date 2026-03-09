@@ -1,0 +1,9 @@
+{
+  "name": "koha-systemd",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "preversion": "scripts/update-changelog.sh",
+    "postversion": "git push && git push --tags"
+  }
+}
