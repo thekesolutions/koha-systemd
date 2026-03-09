@@ -33,25 +33,23 @@ The existing koha-* scripts (koha-plack, koha-sip, etc.) do more than start/stop
 
 ### Worker Queue Handling
 
-**Decision: Use multi-level systemd templates**
+**Decision: Separate templates per queue**
 
-Koha has multiple background job queues (default, long_tasks) and sites may define custom queues. Rather than creating separate unit files for each queue, we use systemd's multi-level template instantiation.
+Koha has multiple background job queues (default, long_tasks). We provide separate templates for the standard queues:
 
-```bash
-# Start default queue for instance "library"
-systemctl start koha-worker@default:library.service
+- `koha-worker@.service` - default queue
+- `koha-worker-long@.service` - long_tasks queue
 
-# Start long_tasks queue for instance "library"
-systemctl start koha-worker@long_tasks:library.service
+For custom queues, administrators can create additional unit files by copying and modifying these templates.
 
-# Start custom queue for instance "library"
-systemctl start koha-worker@my_custom_queue:library.service
-```
+Benefits:
+- Simple and explicit
+- No parsing required
+- Clear service names
+- Easy to understand and maintain
 
-Template variables:
-- `%i` = Full instance string (e.g., "default:library")
-- `%p` = Prefix before colon (e.g., "library") - used for instance name
-- First component = queue name, passed to --queue
+Alternatives considered:
+- Multi-level templates (`instance:queue` format) - rejected because systemd cannot extract the queue suffix, would require wrapper script
 
 Benefits:
 - No redundant unit files - single template handles all queues

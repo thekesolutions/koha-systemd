@@ -1,5 +1,5 @@
 [Unit]
-Description=Koha background worker (long_tasks) for %i
+Description=Koha background worker (long_tasks queue) for %i
 PartOf=koha@%i.target
 After=koha@%i.target
 

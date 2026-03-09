@@ -1,5 +1,5 @@
 [Unit]
-Description=Koha background worker (default) for %i
+Description=Koha background worker (default queue) for %i
 PartOf=koha@%i.target
 After=koha@%i.target
 

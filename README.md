@@ -71,11 +71,8 @@ sudo systemctl stop koha@library.target
 sudo systemctl restart koha-plack@library.service
 
 # Check worker status
-sudo systemctl status koha-worker@default:library.service
-sudo systemctl status koha-worker@long_tasks:library.service
-
-# Start custom queue worker
-sudo systemctl start koha-worker@my_queue:library.service
+sudo systemctl status koha-worker@library.service
+sudo systemctl status koha-worker-long@library.service
 ```
 
 ### Viewing logs
