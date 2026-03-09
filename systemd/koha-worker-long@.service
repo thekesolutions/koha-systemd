@@ -2,6 +2,8 @@
 Description=Koha background worker (long_tasks queue) for %i
 PartOf=koha@%i.target
 After=koha@%i.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
 Type=simple
@@ -14,8 +16,6 @@ Environment=PERL5LIB=/usr/share/koha/lib
 ExecStart=/usr/share/koha/bin/workers/background_jobs_worker.pl --queue long_tasks
 Restart=on-failure
 RestartSec=5s
-StartLimitBurst=3
-StartLimitIntervalSec=60
 
 [Install]
 WantedBy=koha@%i.target
