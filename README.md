@@ -37,14 +37,14 @@ Plus grouping targets:
 Download the latest `.deb` from [Releases](https://github.com/thekesolutions/koha-systemd/releases):
 
 ```bash
-wget -O koha-systemd.deb https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.3_all.deb
+wget -O koha-systemd.deb https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.4_all.deb
 sudo dpkg -i koha-systemd.deb
 ```
 
 Or let wget determine the filename:
 
 ```bash
-wget --content-disposition https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.3_all.deb
+wget --content-disposition https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.4_all.deb
 sudo dpkg -i koha-systemd_*.deb
 ```
 
