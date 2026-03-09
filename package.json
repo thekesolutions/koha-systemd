@@ -1,6 +1,6 @@
 {
   "name": "koha-systemd",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "preversion": "scripts/update-changelog.sh",
