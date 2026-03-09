@@ -21,7 +21,8 @@ This package provides native systemd units for each Koha service type:
 - `koha-zebra@.service` - Zebra indexing server
 - `koha-sip@.service` - SIP2 server
 - `koha-z3950@.service` - Z39.50/SRU server
-- `koha-worker@.service` - Background job workers (multi-level template)
+- `koha-worker@.service` - Background job workers (default queue)
+- `koha-worker-long@.service` - Background job workers (long_tasks queue)
 - `koha-indexer@.service` - Zebra indexing daemon
 - `koha-es-indexer@.service` - Elasticsearch indexing daemon
 
@@ -118,6 +119,8 @@ This package handles **service lifecycle only**. Configuration management tasks 
 - Use `koha-plack --enable` to enable Plack in Apache config
 - Use `koha-sip --enable` to enable SIP
 - Use `koha-create` to create instances
+
+**Custom worker queues:** The package provides templates for the two standard queues (default, long_tasks). For custom queues, copy and modify one of the worker templates.
 
 ## Contributing
 
