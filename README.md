@@ -27,7 +27,7 @@ This package provides native systemd units for each Koha service type:
 - `koha-es-indexer@.service` - Elasticsearch indexing daemon
 
 Plus grouping targets:
-- `koha@.target` - All services for one instance
+- `koha@[instance].target` - All services for one instance (e.g., `koha@library.target`)
 - `koha.target` - All instances
 
 ## Installation
