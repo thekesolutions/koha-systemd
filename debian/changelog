@@ -1,5 +1,11 @@
 koha-systemd (1.0.1) unstable; urgency=medium
 
+  * Release 1.0.1
+
+ -- Tomas Cohen Arazi <tomascohen@theke.io>  Mon, 09 Mar 2026 12:41:50 -0300
+
+koha-systemd (1.0.1) unstable; urgency=medium
+
   * Fix: Separate worker templates instead of multi-level
   * Fix: Verify permissions match koha-create schema
   * Docs: Update README and design documentation
