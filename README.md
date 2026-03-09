@@ -34,10 +34,10 @@ Plus grouping targets:
 
 ### From Release
 
-Download the `.deb` for your Debian version from [Releases](https://github.com/thekesolutions/koha-systemd/releases):
+Download the `.deb` from [Releases](https://github.com/thekesolutions/koha-systemd/releases):
 
 ```bash
-wget https://github.com/thekesolutions/koha-systemd/releases/download/v1.0.0/koha-systemd_1.0.0_all.deb
+wget https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.0_all.deb
 sudo dpkg -i koha-systemd_1.0.0_all.deb
 ```
 
