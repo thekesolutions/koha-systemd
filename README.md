@@ -62,35 +62,35 @@ sudo dpkg -i ../koha-systemd_*.deb
 ### Managing a complete instance
 
 ```bash
-# Enable and start all services
-sudo systemctl enable --now koha@library.target
+# Enable and start all services (replace [instance] with your instance name, e.g., library)
+sudo systemctl enable --now koha@[instance].target
 
 # Check status
-sudo systemctl status koha@library.target
+sudo systemctl status koha@[instance].target
 
 # Stop all services
-sudo systemctl stop koha@library.target
+sudo systemctl stop koha@[instance].target
 ```
 
 ### Managing individual services
 
 ```bash
 # Restart just Plack
-sudo systemctl restart koha-plack@library.service
+sudo systemctl restart koha-plack@[instance].service
 
 # Check worker status
-sudo systemctl status koha-worker@library.service
-sudo systemctl status koha-worker-long@library.service
+sudo systemctl status koha-worker@[instance].service
+sudo systemctl status koha-worker-long@[instance].service
 ```
 
 ### Viewing logs
 
 ```bash
 # All services for instance
-sudo journalctl -u 'koha-*@library.service'
+sudo journalctl -u 'koha-*@[instance].service'
 
 # Specific service
-sudo journalctl -u koha-plack@library.service -f
+sudo journalctl -u koha-plack@[instance].service -f
 
 # All Koha logs
 sudo journalctl -u 'koha-*.service'
@@ -100,13 +100,13 @@ sudo journalctl -u 'koha-*.service'
 
 ```bash
 # Enable instance
-sudo koha-systemd-ctl enable library
+sudo koha-systemd-ctl enable [instance]
 
 # Start specific service
-sudo koha-systemd-ctl start library plack
+sudo koha-systemd-ctl start [instance] plack
 
 # Check status
-sudo koha-systemd-ctl status library
+sudo koha-systemd-ctl status [instance]
 ```
 
 ## Design
