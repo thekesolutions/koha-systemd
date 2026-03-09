@@ -34,11 +34,18 @@ Plus grouping targets:
 
 ### From Release
 
-Download the `.deb` from [Releases](https://github.com/thekesolutions/koha-systemd/releases):
+Download the latest `.deb` from [Releases](https://github.com/thekesolutions/koha-systemd/releases):
 
 ```bash
-wget https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.1_all.deb
-sudo dpkg -i koha-systemd_1.0.1_all.deb
+wget -O koha-systemd.deb https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.1_all.deb
+sudo dpkg -i koha-systemd.deb
+```
+
+Or let wget determine the filename:
+
+```bash
+wget --content-disposition https://github.com/thekesolutions/koha-systemd/releases/latest/download/koha-systemd_1.0.1_all.deb
+sudo dpkg -i koha-systemd_*.deb
 ```
 
 ### From Source
