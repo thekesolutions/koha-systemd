@@ -1,3 +1,9 @@
+koha-systemd (1.0.2) unstable; urgency=medium
+
+  * Release 1.0.2
+
+ -- Tomas Cohen Arazi <tomascohen@theke.io>  Mon, 09 Mar 2026 12:49:33 -0300
+
 koha-systemd (1.0.1) unstable; urgency=medium
 
   * Release 1.0.1
