@@ -1,9 +1,17 @@
+koha-systemd (1.0.1) unstable; urgency=medium
+
+  * Fix: Separate worker templates instead of multi-level
+  * Fix: Verify permissions match koha-create schema
+  * Docs: Update README and design documentation
+  * Docs: Add PERMISSIONS.md analysis
+
+ -- Tomas Cohen Arazi <tomascohen@theke.io>  Mon, 09 Mar 2026 11:18:00 -0300
+
 koha-systemd (1.0.0) unstable; urgency=medium
 
   * Initial release
   * Native systemd service units for Koha ILS
   * Templated units for per-instance service management
-  * Multi-level template support for worker queues
   * Helper script for easy management
 
  -- Tomas Cohen Arazi <tomascohen@theke.io>  Fri, 06 Mar 2026 18:57:00 -0300
