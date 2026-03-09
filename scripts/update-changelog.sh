@@ -1,8 +1,18 @@
 #!/bin/bash
 set -e
 
-# Get new version from package.json (npm version updates it before preversion runs)
-NEW_VERSION=$(node -p "require('./package.json').version")
+# npm version lifecycle:
+# 1. preversion runs (package.json still has OLD version)
+# 2. npm bumps version in package.json
+# 3. npm commits
+# 4. postversion runs
+# So we need to calculate the new version ourselves
+
+CURRENT_VERSION=$(node -p "require('./package.json').version")
+
+# Bump patch version
+IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+NEW_VERSION="$major.$minor.$((patch + 1))"
 
 # Update debian/changelog
 TIMESTAMP=$(date -R)

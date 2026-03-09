@@ -1,6 +1,6 @@
-koha-systemd (1.0.3) unstable; urgency=medium
+koha-systemd (1.0.4) unstable; urgency=medium
 
-  * Release 1.0.3
+  * Release 1.0.4
 
  -- Tomas Cohen Arazi <tomascohen@theke.io>  Mon, 09 Mar 2026 13:00:34 -0300
 
