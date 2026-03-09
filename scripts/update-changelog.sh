@@ -18,7 +18,8 @@ cat debian/changelog >> debian/changelog.new
 mv debian/changelog.new debian/changelog
 
 # Update README
-sed -i "s/koha-systemd_[0-9.]*_all.deb/koha-systemd_${NEW_VERSION}_all.deb/g" README.md
+sed -i.bak "s/koha-systemd_[0-9.]*_all.deb/koha-systemd_${NEW_VERSION}_all.deb/g" README.md
+rm -f README.md.bak
 
 # Stage changes
 git add debian/changelog README.md
